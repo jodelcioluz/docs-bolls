@@ -14,6 +14,15 @@ export default defineConfig({
   integrations: [starlight({
       customCss: ['./src/styles/global.css'],
       title: 'Bolls.Tech',
+      // i18n (UI do Starlight) — define o idioma do site como pt-BR.
+      // Como é um site monolíngue, usamos `root` para manter as URLs sem prefixo (/...
+      // ao invés de /pt-br/...).
+      locales: {
+        root: {
+          label: 'Português (Brasil)',
+          lang: 'pt-BR',
+        },
+      },
       logo: {
         src: "/public/logo.png",
       },
@@ -26,20 +35,9 @@ export default defineConfig({
       ],
       sidebar: [
           {
-              label: 'Guides',
-              items: [
-                  // Each item here is one entry in the navigation menu.
-                  { label: 'Example Guide', slug: 'guides/example' },
-              ],
+              label: '🚧 EM BREVE',
+              autogenerate: { directory: 'embreve' },
           },
-          {
-              label: 'Reference',
-              autogenerate: { directory: 'reference' },
-          },
-          {
-            label: 'Testes',
-            autogenerate: { directory: 'teste' },
-          }
       ],
       }), mdx(), markdoc()],
 
