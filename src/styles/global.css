@@ -1,0 +1,474 @@
+@import "tailwindcss";
+
+/* winter */
+
+.snowflake {
+  position: fixed;
+  top: -20px;
+  pointer-events: none;
+  color: white;
+  animation: fall linear forwards;
+  will-change: transform;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+  }
+}
+
+/* end */
+
+@font-face {
+  font-family: "gg sans";
+  src: url("https://github.com/Faf4a/stunning-spoon/raw/refs/heads/main/fonts/ggsans-Bold.ttf")
+    format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "gg sans";
+  src: url("https://github.com/Faf4a/stunning-spoon/raw/refs/heads/main/fonts/ggsans-BoldItalic.ttf")
+    format("truetype");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "gg sans";
+  src: url("https://github.com/Faf4a/stunning-spoon/raw/refs/heads/main/fonts/ggsans-ExtraBoldItalic.ttf")
+    format("truetype");
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "gg sans";
+  src: url("https://github.com/Faf4a/stunning-spoon/raw/refs/heads/main/fonts/ggsans-Normal.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "gg sans";
+  src: url("https://github.com/Faf4a/stunning-spoon/raw/refs/heads/main/fonts/ggsans-NormalItalic.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+:root {
+  /* Brand (logo): preto/branco, minimalista (contraste mais moderno) */
+  --sl-color-accent-low: #0e0f10;
+  --sl-color-accent: #fafafa;
+  --sl-color-accent-high: #d7d7d7;
+  --ds-text: var(--sl-color-text-accent);
+  /* Mantém o nome para evitar refactors; agora é “neutral” */
+  --blue-hsl: 0, 0%, 100%;
+  --overlay-blurple: hsla(var(--blue-hsl), 0.12);
+  --ec-frm-tooltipSuccessBg: var(--sl-color-gray-5) !important;
+}
+
+/* Light mode colors. */
+:root[data-theme="light"] {
+  --sl-color-accent-low: #f5f5f5;
+  --sl-color-accent: #0e0f10;
+  --sl-color-accent-high: #000000;
+  --blue-hsl: 0, 0%, 0%;
+  --overlay-blurple: hsla(var(--blue-hsl), 0.08);
+  --sl-hue-accent: 0;
+}
+
+/* Home hero highlight (usado no index.mdx) */
+[data-has-hero] .hero .hero-highlight {
+  display: inline-block;
+  padding: 0.06em 0.35em;
+  margin: 0 -0.06em;
+  border-radius: 0.35em;
+  background: var(--sl-color-accent);
+  color: var(--sl-color-bg);
+  box-shadow: inset 0 0 0 1px var(--sl-color-hairline);
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+/* Card styling enhancements */
+.sl-card {
+  transition: all 0.3s ease;
+  border: 1px solid var(--sl-color-hairline);
+}
+
+.sl-card:hover {
+  border-color: var(--sl-color-accent-high);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .sl-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Bold text emphasis in content */
+.sl-markdown-content b {
+  color: var(--sl-color-white);
+  font-weight: 700;
+}
+
+[data-theme="light"] .sl-markdown-content b {
+  color: var(--sl-color-black);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+img::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 0;
+  position: absolute;
+  background: inherit;
+  filter: blur(20px);
+  z-index: -1;
+}
+
+/* fix for small screens */
+@media (max-width: 900px) {
+  .tracker-container {
+    font-size: 0.25rem;
+    padding: 0.5rem;
+    overflow-x: scroll !important;
+
+    && ul li:last-child {
+      padding-right: 0.5rem;
+    }
+  }
+
+  .package-stats-container > * {
+    flex: 1 1 45%;
+    max-width: 45%;
+    margin: 0.5rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .tracker-container {
+    display: none;
+  }
+}
+
+/* Center table contents */
+.sl-markdown-content :is(th, td):not(:where(.not-content *)):has(img) {
+  width: 50%;
+}
+
+/* package stats styles */
+.icon-layout {
+  position: absolute;
+  height: 150px;
+  width: 150px;
+  transform: rotate(-15deg);
+  margin-top: 5px;
+  z-index: -1;
+  opacity: 0.25;
+  overflow: hidden;
+  width: max-content;
+  pointer-events: none;
+  transition:
+    fill 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
+}
+
+.package-stats-container {
+  position: relative;
+  display: flex;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 5px;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 2rem;
+  background-color: var(--sl-color-bg);
+  backdrop-filter: blur(16px);
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.package-container-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
+
+  && p {
+    transition: opacity 0.3s ease-in-out;
+  }
+}
+
+.container-inner-font {
+  color: var(--sl-color-text-accent);
+  padding: 15px;
+}
+
+#stars:hover {
+  && p {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0.8;
+  }
+
+  && svg {
+    transition:
+      fill 0.3s ease-in-out,
+      transform 0.3s ease-in-out;
+    transform: rotate(15deg);
+    fill: var(--sl-color-accent);
+  }
+}
+
+#downloads:hover {
+  && p {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0.8;
+  }
+
+  && svg {
+    transition:
+      fill 0.3s ease-in-out,
+      transform 0.3s ease-in-out;
+    transform: rotate(15deg);
+    fill: var(--sl-color-accent);
+  }
+}
+
+/* hero styles */
+
+[data-has-hero] {
+  && header {
+    border-bottom: 1px solid transparent;
+    background-color: transparent;
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+  }
+
+  && .page {
+    background:
+      linear-gradient(215deg, var(--overlay-blurple), transparent 40%),
+      radial-gradient(var(--overlay-blurple), transparent 40%) no-repeat -60vw -40vh /
+        105vw 200vh,
+      radial-gradient(var(--overlay-blurple), transparent 65%) no-repeat 50%
+        calc(100% + 20rem) / 60rem 30rem;
+
+    && {
+      article {
+        border-radius: 4px;
+      }
+    }
+  }
+
+  && .hero > img {
+    filter: drop-shadow(0 0 3rem var(--overlay-blurple));
+  }
+}
+
+/* Discord Message Component global styles */
+.discord-light-theme .discord-message a {
+  color: var(--sl-color-accent);
+}
+
+.discord-button.discord-button-secondary:hover {
+  background-color: rgba(67, 72, 79, 80%);
+}
+
+discord-messages > discord-message {
+  padding: 15px;
+
+  && discord-embed {
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+
+  && discord-embed-field {
+    margin-top: 5px;
+  }
+}
+
+a.sl-flex.action.primary {
+  transition: all 0.3s ease-out;
+
+  &&:hover {
+    transition: all 0.3s ease-in;
+    filter: drop-shadow(0 0 7rem var(--sl-color-accent-high));
+  }
+}
+
+.tracker-container {
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--sl-color-hairline);
+
+  && ul li {
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Footer */
+.contribute-footer {
+  margin-top: 10rem !important;
+  text-align: center;
+  padding: 2rem 1rem;
+  border-top: 1px solid var(--sl-color-hairline);
+}
+
+.contribute-footer p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.contribute-footer p:first-child {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.contribute-footer a {
+  color: var(--sl-color-accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.contribute-footer a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.footer-icon {
+  margin: 0 auto;
+  width: 100px;
+  height: auto;
+  cursor: pointer;
+}
+
+/* Fix custom headers */
+
+.heading-link {
+  text-decoration: none;
+  color: var(--sl-color-text) !important;
+
+  &&.heading-link::after {
+    content: "#";
+    padding-inline-start: 0.25em;
+    opacity: 0;
+    transition: all 0.2s ease-in;
+  }
+
+  &&:hover::after {
+    color: var(--sl-color-text-accent);
+    transition: all 0.2s ease-in;
+    opacity: 1;
+  }
+}
+
+/* Sidebar overrides */
+
+.sidebar-content ul li {
+  margin-left: 0;
+  border: none;
+}
+
+.sidebar-pane {
+  border: none;
+}
+
+.group-label .large {
+  display: block;
+  padding: 4px 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.sidebar-content ul a {
+  padding: 8px 10px;
+  font-size: 0.84rem;
+  overflow: hidden !important;
+  overflow-wrap: initial !important;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  &&[aria-current="page"] {
+    color: var(--custom-color-text-strong);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.032);
+    background-color: rgba(255, 255, 255, 0.032);
+
+    [data-theme="light"] & {
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+      background-color: rgba(0, 0, 0, 0.024);
+    }
+  }
+}
+
+.right-sidebar {
+  padding-left: 32px;
+  border: none;
+}
+
+#starlight__on-this-page {
+  margin-bottom: 16px;
+  padding: 0 8px;
+  font-size: 0.9rem;
+}
+
+.right-sidebar-panel li ul {
+  margin-left: calc(var(--depth) * 16px);
+}
+
+.right-sidebar-panel a {
+  padding: 5px 8px;
+}
+
+/* overwrite horrible starlight tables */
+
+.sl-markdown-content table:not(:where(.not-content *)) {
+  display: block;
+  overflow: auto;
+  border-collapse: collapse;
+}
+
+.sl-markdown-content {
+  && th:not([align]):not(:where(.not-content *)) {
+    text-align: center;
+  }
+
+  && tr:nth-child(2n):not(:where(.not-content *)) {
+    background-color: var(--sl-color-gray-7, var(--sl-color-gray-6));
+  }
+
+  && :is(th, td):not(:where(.not-content *)) {
+    border: 1px solid var(--sl-color-hairline-light);
+    padding: 0.375rem 0.8125rem !important;
+  }
+
+  && table thead img {
+    border-radius: 4px;
+  }
+
+  && table:has(thead img) tbody {
+    font-family: monospace;
+    color: var(--sl-color-gray-3);
+  }
+}
+
+#starlight__search mark {
+  background-color: var(--sl-color-text-accent);
+}
+
+/* Fix code wrapping in tables */
+.sl-markdown-content :is(th, td):not(:where(.not-content *)) code {
+  white-space: pre-wrap;
+}
