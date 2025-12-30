@@ -3,13 +3,18 @@ title: 🛑 EM DESENVOLVIMENTO
 description: A API ainda está em construção — acompanhe o desenvolvimento e novidades.
 ---
 
-Estamos preparando a **API da Bolls** e esta seção da documentação ainda está em construção.
+Estamos desenvolvendo a **API da Bolls** e esta seção da documentação ainda está em construção.
 
-:::note[Status]
+:::danger[Status]
 📌 **Ainda não está pronta**, mas já estamos organizando os guias, exemplos e referência para você começar com o pé direito assim que lançar.
 :::
 
 ## 📣 Acompanhe o desenvolvimento
+
+
+:::note[NO MOMENTO]
+📡 Atualmente estamos focando no **Streaming** com WebSockets na API.
+:::
 
 Quer ver novidades, atualizações e avisos de lançamento?
 
@@ -31,4 +36,4 @@ Se você tiver um caso de uso (chatbot, agente com memória, integrações, etc.
 ## 🕒 Previsão
 
 Ainda **sem data pública** nesta página.
-Assim que tivermos um cronograma mais definido, avisaremos no Discord. 🔔
+Assim que tivermos um cronograma mais definido, avisaremos no <span style="color: #5865F2; font-weight: bold;">Discord</span> e por aqui. 🔔
